@@ -1,0 +1,83 @@
+{
+  "title": "单键切换中英输入法: 左右 ⇧",
+  "rules": [
+    {
+      "description": "短按 左 Shift (⇧) 切换 EN",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "left_shift"
+          },
+          "to": [
+            {
+              "key_code": "left_shift"
+            }
+          ],
+          "to_if_alone": [
+            {
+              "select_input_source": {
+                "language": "en"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "短按 右 Shift (⇧) 切换 ZH (通过 ⌃ + Space 实现)",
+      "manipulators": [
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "input_sources": [
+                {
+                  "language": "zh-Hans"
+                }
+              ],
+              "type": "input_source_unless"
+            }
+          ],
+          "from": {
+            "key_code": "right_shift"
+          },
+          "to": [
+            {
+              "key_code": "right_shift"
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "spacebar",
+              "modifiers": [
+                "left_control"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "input_sources": [
+                {
+                  "language": "zh-Hans"
+                }
+              ],
+              "type": "input_source_if"
+            }
+          ],
+          "from": {
+            "key_code": "right_shift"
+          },
+          "to": [
+            {
+              "key_code": "right_shift"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
